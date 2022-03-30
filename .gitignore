@@ -1,0 +1,30 @@
+#gameServer/HELP.md
+gameServer/target/
+#gameServer/.mvn
+gameServer/!**/src/main/**/target/
+gameServer/!**/src/test/**/target/
+
+### STS ###
+gameServer/.apt_generated
+gameServer/.classpath
+gameServer/.factorypath
+gameServer/.project
+gameServer/.settings
+gameServer/.springBeans
+gameServer/.sts4-cache
+### IntelliJ IDEA ###
+gameServer/.idea
+gameServer/*.iws
+gameServer/*.iml
+gameServer/*.ipr
+### NetBeans ###
+gameServer/nbproject/private/
+gameServer/nbbuild/
+gameServer/dist/
+gameServer/nbdist/
+gameServer/.nb-gradle/
+gameServer/build/
+gameServer/!**/src/main/**/build/
+gameServer/!**/src/test/**/build/
+### VS Code ###
+gameServer/.vscode/
