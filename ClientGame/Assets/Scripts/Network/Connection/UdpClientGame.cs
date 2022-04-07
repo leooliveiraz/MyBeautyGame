@@ -9,13 +9,12 @@ using UnityEngine;
 
 public class UdpClientGame : MonoBehaviour
 {
-  UdpClient client;
-  string hostIp = "127.0.0.1"; //"172.26.125.41"
-  int hostPort = 1234;
+  private static UdpClient client;
+  private static string hostIp = "127.0.0.1"; //"172.26.125.41"
+  private static int hostPort = 1234;
   
-  private Thread threadReceive;
-  private Thread threadSend;
-  void Start()
+  private static Thread threadReceive;
+  public static void ConnectToServer()
   {
     client = new UdpClient();
     try
@@ -23,7 +22,6 @@ public class UdpClientGame : MonoBehaviour
       client.Connect(hostIp,hostPort);
       threadReceive = new Thread(receiveMsg);
       threadReceive.Start();
-      sendMsg("connecting");
     }
     catch (Exception e)
     {
@@ -35,22 +33,13 @@ public class UdpClientGame : MonoBehaviour
     byte [] sendBytes = Encoding.UTF8.GetBytes(msg);
     client.Send(sendBytes, sendBytes.Length);
   }
-  void receiveMsg(){
+  static void receiveMsg(){
     while(true){
       IPEndPoint remoteEndPoint = new IPEndPoint(IPAddress.Any,0);
       byte[] receivedBytes = client.Receive(ref remoteEndPoint);
       string msg = Encoding.UTF8.GetString(receivedBytes);
       // ListCommands.addRec(msg);
     }
-  }
-  
-  void Update()
-  {
-    // while(ListCommands.messagesSend.Count > 0){
-    //   String msg = ListCommands.messagesSend[0];
-    //   sendMsg(msg);
-    //   ListCommands.popSend();
-    // }
   }
 
   

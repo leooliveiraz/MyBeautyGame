@@ -8,6 +8,7 @@ public class GameManager : MonoBehaviour
     void Start()
     {
        TcpClientGame.ConnectToServer();
+       
     }
 
     // Update is called once per frame
