@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.charset.StandardCharsets;
 import java.time.LocalTime;
 
+import br.com.leorocha.gameServer.controller.SessionController;
 import org.springframework.web.socket.BinaryMessage;
 import org.springframework.web.socket.CloseStatus;
 import org.springframework.web.socket.TextMessage;
@@ -29,14 +30,13 @@ public class WebSocketHandler extends AbstractWebSocketHandler {
 
     @Override
     public void afterConnectionEstablished(WebSocketSession session) throws Exception {
-        System.out.println("New Connection");
-//        ConnectionController.addConection(session);
+        SessionController.addSessionTCP(session);
     }
 
     @Override
     public void afterConnectionClosed(WebSocketSession session, CloseStatus status) throws Exception {
         System.out.println("Connection closed");
-//        ConnectionController.removeConection(session);
+        SessionController.removeSessionTCP(session);
     }
 
 }

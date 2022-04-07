@@ -1,6 +1,7 @@
 package br.com.leorocha.gameServer.conf;
 
 
+import br.com.leorocha.gameServer.controller.SessionController;
 import lombok.SneakyThrows;
 
 import java.io.IOException;
@@ -29,7 +30,8 @@ public class UdpServerRunner implements Runnable{
             DpReceive = new DatagramPacket(UdpServer.receive, UdpServer.receive.length);
             // Step 3 : revieve the data in byte buffer.
             UdpServer.socket.receive(DpReceive);
-
+            String idConn = DpReceive.getAddress().getHostName()+":"+DpReceive.getPort();
+            SessionController.addSessionUDP(idConn);
 
             String receivedData = data(UdpServer.receive).toString();
 
